@@ -1,0 +1,25 @@
+{
+    "name": "codium-theme",
+    "displayName": "Main Theme",
+    "description": "VSCodium Main Theme",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/MatthewCash/codium-theme.git"
+    },
+    "version": "0.1.0",
+    "engines": {
+        "vscode": "^1.77.0"
+    },
+    "categories": [
+        "Themes"
+    ],
+    "contributes": {
+        "themes": [
+            {
+                "label": "Main Theme",
+                "uiTheme": "vs-dark",
+                "path": "./themes/color-theme.json"
+            }
+        ]
+    }
+}
