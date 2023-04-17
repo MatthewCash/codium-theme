@@ -11,6 +11,9 @@
         let pkgs = nixpkgs.legacyPackages.${system}; in {
             defaultPackage = pkgs.lib.makeOverridable ({ accentColor }: pkgs.stdenvNoCC.mkDerivation {
                 name = "codium-theme";
+                vscodeExtUniqueId = "codium-theme";
+                vscodeExtPublisher = "Matthew_Cash";
+                version = "1.0.0";
                 src = ./.;
                 nativeBuildInputs = with pkgs; [ nodePackages.npm ];
                 dontConfigure = true;
@@ -38,8 +41,11 @@
                     ${pkgs.vsce}/bin/vsce package -o extension.vsix
                 '';
                 installPhase = ''
-                    mkdir -p $out/extension
-                    cp extension.vsix $out/extension/
+                    outdir="$out/share/vscode/extensions/codium-theme"
+                    outdirpacked="$out/share/vscode/extensions"
+                    mkdir -p "$outdir" "$outdirpacked"
+                    mv extension.vsix "$outdirpacked"
+                    cp -r . "$outdir"
                 '';
             }) { accentColor = { h = 300; s = 60; l = 70; }; };
         }
